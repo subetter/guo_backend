@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="generator.mapper.LogMapper">
+
+    <resultMap id="BaseResultMap" type="generator.domain.Log">
+            <result property="logId" column="log_id" jdbcType="VARCHAR"/>
+            <result property="logTime" column="log_time" jdbcType="TIMESTAMP"/>
+            <result property="logContent" column="log_content" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        log_id,log_time,log_content
+    </sql>
+</mapper>

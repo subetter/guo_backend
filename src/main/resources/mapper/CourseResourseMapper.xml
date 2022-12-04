@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="generator.mapper.CourseResourseMapper">
+
+    <resultMap id="BaseResultMap" type="generator.domain.CourseResourse">
+            <id property="resourceId" column="resource_id" jdbcType="VARCHAR"/>
+            <result property="pdf" column="pdf" jdbcType="VARCHAR"/>
+            <result property="video" column="video" jdbcType="VARCHAR"/>
+            <result property="chapterId" column="chapter_id" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        resource_id,pdf,video,
+        chapter_id
+    </sql>
+</mapper>
