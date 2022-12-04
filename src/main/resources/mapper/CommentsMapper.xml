@@ -2,9 +2,9 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="generator.mapper.CommentsMapper">
+<mapper namespace="com.guo_backend.mapper.CommentsMapper">
 
-    <resultMap id="BaseResultMap" type="generator.domain.Comments">
+    <resultMap id="BaseResultMap" type="com.guo_backend.domain.Comments">
             <id property="commentId" column="comment_id" jdbcType="VARCHAR"/>
             <result property="commentTime" column="comment_time" jdbcType="TIMESTAMP"/>
             <result property="commentContent" column="comment_content" jdbcType="VARCHAR"/>

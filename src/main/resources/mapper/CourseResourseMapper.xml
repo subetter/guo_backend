@@ -2,9 +2,9 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="generator.mapper.CourseResourseMapper">
+<mapper namespace="com.guo_backend.mapper.CourseResourseMapper">
 
-    <resultMap id="BaseResultMap" type="generator.domain.CourseResourse">
+    <resultMap id="BaseResultMap" type="com.guo_backend.domain.CourseResourse">
             <id property="resourceId" column="resource_id" jdbcType="VARCHAR"/>
             <result property="pdf" column="pdf" jdbcType="VARCHAR"/>
             <result property="video" column="video" jdbcType="VARCHAR"/>
