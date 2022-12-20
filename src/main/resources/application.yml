@@ -1,1 +1,34 @@
-
+spring:
+  application:
+    name: "guo_backend"
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://sh-cynosdbmysql-grp-o1qwdcls.sql.tencentcdb.com:24659/guo?characterEncoding=utf-8&useSSL=false
+    username: GROOT
+    password: GuoChang123
+  file-storage:
+    default-platform: tencent-cos-1
+    tencent-cos:
+      - platform: tencent-cos-1 # 存储平台标识
+        enable-storage: true  # 启用存储
+        secret-id: AKIDDHDwSpzCctfRBkDTXZNwJUSFqBKRn1BH
+        secret-key: zmZdeUesBNMAl8KWZYcU9cruiN7lDbzH
+        region: ap-chengdu #存仓库所在地域
+        bucket-name: database-1308950705
+        domain: https://database-1308950705.cos.ap-chengdu.myqcloud.com
+        base-path: /  # 基础路径
+server:
+  port: 8080
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  type-aliases-package: com/guo_backend/domain
+logging:
+  level:
+    com.elemweb: debug
+    root: info
+  config: classpath:logging-config.xml
+  file:
+    name: ${logging.file.path}/${spring.application.name}.log
+    path: logs

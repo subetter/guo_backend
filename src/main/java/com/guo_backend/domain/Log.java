@@ -1,6 +1,7 @@
 package com.guo_backend.domain;
 
 import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
 import java.util.Date;
@@ -16,6 +17,7 @@ public class Log implements Serializable {
     /**
      * 
      */
+    @TableId
     private String logId;
 
     /**
