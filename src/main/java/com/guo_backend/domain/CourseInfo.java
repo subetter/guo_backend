@@ -39,6 +39,10 @@ public class CourseInfo implements Serializable {
      */
     private String courseType;
 
+    /*
+
+     */
+    private String coverImg;
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
 
@@ -58,7 +62,8 @@ public class CourseInfo implements Serializable {
             && (this.getChapterQuantity() == null ? other.getChapterQuantity() == null : this.getChapterQuantity().equals(other.getChapterQuantity()))
             && (this.getLogContent() == null ? other.getLogContent() == null : this.getLogContent().equals(other.getLogContent()))
             && (this.getCourseName() == null ? other.getCourseName() == null : this.getCourseName().equals(other.getCourseName()))
-            && (this.getCourseType() == null ? other.getCourseType() == null : this.getCourseType().equals(other.getCourseType()));
+            && (this.getCourseType() == null ? other.getCourseType() == null : this.getCourseType().equals(other.getCourseType()))
+            && (this.getCourseType() == null ? other.getCoverImg() == null : this.getCoverImg().equals(other.getCoverImg()));
     }
 
     @Override
@@ -70,6 +75,7 @@ public class CourseInfo implements Serializable {
         result = prime * result + ((getLogContent() == null) ? 0 : getLogContent().hashCode());
         result = prime * result + ((getCourseName() == null) ? 0 : getCourseName().hashCode());
         result = prime * result + ((getCourseType() == null) ? 0 : getCourseType().hashCode());
+        result = prime * result + ((getCoverImg() == null) ? 0 : getCoverImg().hashCode());
         return result;
     }
 
@@ -84,6 +90,7 @@ public class CourseInfo implements Serializable {
         sb.append(", logContent=").append(logContent);
         sb.append(", courseName=").append(courseName);
         sb.append(", courseType=").append(courseType);
+        sb.append(", coverImg=").append(coverImg);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();

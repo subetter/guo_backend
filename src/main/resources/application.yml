@@ -20,6 +20,7 @@ spring:
         base-path: /  # 基础路径
 server:
   port: 8080
+
 mybatis-plus:
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
@@ -32,3 +33,11 @@ logging:
   file:
     name: ${logging.file.path}/${spring.application.name}.log
     path: logs
+#jwt配置
+#jwt
+jwt:
+  secret:
+    key: happyjava1234214214asfasfasfasdf
+  token:
+    expired: 360000
+

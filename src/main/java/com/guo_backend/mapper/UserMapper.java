@@ -2,11 +2,8 @@ package com.guo_backend.mapper;
 
 import com.guo_backend.domain.User;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import org.apache.ibatis.annotations.MapKey;
+import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Repository;
-
-import java.util.Map;
 
 /**
 * @author fu
@@ -15,14 +12,14 @@ import java.util.Map;
 * @Entity generator.domain.User
 */
 @Component
+@Mapper
 public interface UserMapper extends BaseMapper<User> {
 
     /**
      * 根据id查询用户信息为 Map集合
-     * @param id
+     * @param
      * @return
      */
-
 
 
 }

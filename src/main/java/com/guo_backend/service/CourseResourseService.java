@@ -9,5 +9,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
 * @createDate 2022-12-04 23:24:11
 */
 public interface CourseResourseService extends IService<CourseResourse> {
-
+    CourseResourse getPdf(String chapterId);
 }

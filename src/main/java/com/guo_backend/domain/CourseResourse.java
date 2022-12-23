@@ -34,6 +34,7 @@ public class CourseResourse implements Serializable {
      */
     private String chapterId;
 
+    private Integer count;
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
 
@@ -52,7 +53,8 @@ public class CourseResourse implements Serializable {
         return (this.getResourceId() == null ? other.getResourceId() == null : this.getResourceId().equals(other.getResourceId()))
             && (this.getPdf() == null ? other.getPdf() == null : this.getPdf().equals(other.getPdf()))
             && (this.getVideo() == null ? other.getVideo() == null : this.getVideo().equals(other.getVideo()))
-            && (this.getChapterId() == null ? other.getChapterId() == null : this.getChapterId().equals(other.getChapterId()));
+            && (this.getChapterId() == null ? other.getChapterId() == null : this.getChapterId().equals(other.getChapterId()))
+            && (this.getCount() == null ? other.getCount()== null : this.getCount().equals(other.getCount()));
     }
 
     @Override
@@ -62,7 +64,7 @@ public class CourseResourse implements Serializable {
         result = prime * result + ((getResourceId() == null) ? 0 : getResourceId().hashCode());
         result = prime * result + ((getPdf() == null) ? 0 : getPdf().hashCode());
         result = prime * result + ((getVideo() == null) ? 0 : getVideo().hashCode());
-        result = prime * result + ((getChapterId() == null) ? 0 : getChapterId().hashCode());
+        result = prime * result + ((getCount() == null) ? 0 : getCount().hashCode());
         return result;
     }
 

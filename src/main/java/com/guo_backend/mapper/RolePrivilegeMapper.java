@@ -2,6 +2,7 @@ package com.guo_backend.mapper;
 
 import com.guo_backend.domain.RolePrivilege;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.springframework.stereotype.Component;
 
 /**
 * @author fu
@@ -9,6 +10,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 * @createDate 2022-12-04 23:25:20
 * @Entity generator.domain.RolePrivilege
 */
+@Component
 public interface RolePrivilegeMapper extends BaseMapper<RolePrivilege> {
 
 }
