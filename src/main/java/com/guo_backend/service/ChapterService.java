@@ -2,6 +2,7 @@ package com.guo_backend.service;
 
 import com.guo_backend.domain.Chapter;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.guo_backend.domain.dto.ChapterDto;
 
 /**
 * @author fu
@@ -9,5 +10,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
 * @createDate 2022-12-04 23:23:09
 */
 public interface ChapterService extends IService<Chapter> {
+    Chapter getChapterInfo(String courseId);
 
 }
