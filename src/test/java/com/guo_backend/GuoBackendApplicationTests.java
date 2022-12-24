@@ -8,6 +8,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.annotation.Resource;
+import java.util.Date;
 
 @SpringBootTest
 class GuoBackendApplicationTests {
@@ -19,4 +20,5 @@ class GuoBackendApplicationTests {
         System.out.println(passwordEncoder.encode("123456"));
         System.out.println(passwordEncoder.matches("123456","$2a$10$6N0NQ8nmAYY1.vLYPI/wB.GF8VumL3VX8ure9q4YBsD322HPtXydy"));
     }
+
 }

@@ -2,6 +2,7 @@ package com.guo_backend.service;
 
 import com.guo_backend.domain.Comments;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.guo_backend.domain.User;
 
 /**
 * @author fu
@@ -10,4 +11,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
 */
 public interface CommentsService extends IService<Comments> {
 
+    Comments createComments(Comments comments, User user);
 }

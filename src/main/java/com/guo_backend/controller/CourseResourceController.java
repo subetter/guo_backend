@@ -19,15 +19,22 @@ import javax.annotation.Resource;
  **/
 @Component
 @RestController
-@RequestMapping("cr")
+//@RequestMapping("cr")
 @Slf4j
 @Tag(name = "课程资源表")
 public class CourseResourceController {
     @Resource
     private CourseResourseService courseResourseService;
-    @PostMapping("pdf")
-    @Operation(summary ="下载课程的PDF")
-    public BaseResponse<CourseResourse> getPdf( @RequestParam String chapterId){
+
+    @PostMapping("/pdf")
+    @Operation(summary = "下载课程的PDF")
+    public BaseResponse<CourseResourse> getPdf(@RequestParam String chapterId) {
         return ResultUtils.success(courseResourseService.getPdf(chapterId));
+    }
+
+    @Operation(summary = "获取课程的第一个视频")
+    @GetMapping("/api/cr/covervideo")
+    public BaseResponse<CourseResourse> getFirstVedio(@RequestParam String courseId){
+        return ResultUtils.success(courseResourseService.getFirstVideo(courseId));
     }
 }
