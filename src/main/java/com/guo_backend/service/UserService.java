@@ -13,6 +13,6 @@ import javax.servlet.http.HttpServletResponse;
  */
 public interface UserService extends IService<User> {
     Object login( HttpServletResponse response, String username, String password);
-    UserDto copy( User User );
+    UserDto copy( User user );
     Object register(User user);
 }

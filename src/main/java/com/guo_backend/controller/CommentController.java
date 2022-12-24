@@ -35,5 +35,4 @@ public class CommentController {
         System.out.println("User:"+user+"\n comments:"+comments);
         return ResultUtils.success(commentsService.createComments(comments,user));
     }
-
 }
