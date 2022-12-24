@@ -34,6 +34,8 @@ public class CourseResourse implements Serializable {
      */
     private String chapterId;
 
+    private Integer isFirst;
+
     private Integer count;
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
@@ -78,6 +80,7 @@ public class CourseResourse implements Serializable {
         sb.append(", pdf=").append(pdf);
         sb.append(", video=").append(video);
         sb.append(", chapterId=").append(chapterId);
+        sb.append(", isFirst=").append(isFirst);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();

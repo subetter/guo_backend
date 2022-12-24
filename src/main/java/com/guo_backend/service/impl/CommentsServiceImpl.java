@@ -1,10 +1,17 @@
 package com.guo_backend.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.guo_backend.domain.User;
 import com.guo_backend.mapper.CommentsMapper;
+import com.guo_backend.mapper.UserMapper;
 import com.guo_backend.service.CommentsService;
 import com.guo_backend.domain.Comments;
+import org.springframework.boot.autoconfigure.web.ConditionalOnEnabledResourceChain;
 import org.springframework.stereotype.Service;
+
+import javax.annotation.Resource;
+import java.util.Date;
+import java.util.UUID;
 
 /**
 * @author fu
@@ -15,6 +22,27 @@ import org.springframework.stereotype.Service;
 public class CommentsServiceImpl extends ServiceImpl<CommentsMapper, Comments>
     implements CommentsService {
 
+    @Resource
+    CommentsMapper commentsMapper;
+
+    @Override
+    public Comments createComments(Comments comments, User user) {
+        try{
+            Comments newcomments = new Comments();
+            String uuid = UUID.randomUUID().toString();
+            newcomments.setCommentId(uuid);
+            newcomments.setUserId(user.getUserId());
+            newcomments.setUsername(user.getUsername());
+            newcomments.setChapterId(comments.getChapterId());
+            newcomments.setCommentContent(comments.getCommentContent());
+            newcomments.setCommentTime(new Date());
+            commentsMapper.insert(newcomments);
+            return newcomments;
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return null;
+    }
 }
 
 

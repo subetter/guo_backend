@@ -10,4 +10,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
 */
 public interface CourseResourseService extends IService<CourseResourse> {
     CourseResourse getPdf(String chapterId);
+    CourseResourse getFirstVideo(String courseId);
 }

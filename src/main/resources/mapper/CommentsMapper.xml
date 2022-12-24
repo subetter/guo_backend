@@ -10,7 +10,7 @@
             <result property="commentContent" column="comment_content" jdbcType="VARCHAR"/>
             <result property="reply" column="reply" jdbcType="VARCHAR"/>
             <result property="userId" column="user_id" jdbcType="VARCHAR"/>
-            <result property="userName" column="user_name" jdbcType="VARCHAR"/>
+            <result property="userName" column="username" jdbcType="VARCHAR"/>
             <result property="chapterId" column="chapter_id" jdbcType="VARCHAR"/>
             <result property="status" column="status" jdbcType="INTEGER"/>
     </resultMap>

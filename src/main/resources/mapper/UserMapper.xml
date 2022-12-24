@@ -19,4 +19,7 @@
         role_id,avatar,user_name,
         create_time
     </sql>
+    <select id="selectMapById" resultType="java.util.Map">
+        select user_id,user_name,account,password from user where user_id = #{id}
+    </select>
 </mapper>

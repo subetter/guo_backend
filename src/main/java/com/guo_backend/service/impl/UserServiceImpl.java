@@ -33,27 +33,26 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
 
     private final JwtHelp jwtHelp;
 
-    public UserServiceImpl( UserMapper adminMapper,
-                            JwtHelp jwtHelp ) {
+    public UserServiceImpl(UserMapper adminMapper,
+                           JwtHelp jwtHelp) {
         this.userMapper = adminMapper;
         this.jwtHelp = jwtHelp;
     }
 
     @Override
-    public Object login( HttpServletResponse response, String username, String password ) {
-        BCryptPasswordEncoder passwordEncoder=new BCryptPasswordEncoder();
+    public Object login(HttpServletResponse response, String username, String password) {
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         QueryWrapper<User> queryWrapper = Wrappers.<User>query()
                 .eq("username", username);
         User user = userMapper.selectOne(queryWrapper);
         System.out.println(user.getPassword());
         System.out.println(password);
-        boolean flag = passwordEncoder.matches(password,user.getPassword());
+        boolean flag = passwordEncoder.matches(password, user.getPassword());
         System.out.println(flag);
         if (!flag) {
             // 采用异常流处理业务逻辑
             return null;
-        }
-        else {
+        } else {
             String token = jwtHelp.generateToken(user);
             // 这里不一定是采用cookie，如果是移动端，可以直接返回
             CookiesUtils.setCookies(response, "token", token);
@@ -62,7 +61,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
     }
 
     @Override
-    public UserDto copy( User user ) {
+    public UserDto copy(User user) {
         if (user == null) {
             return null;
         }
@@ -75,20 +74,10 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
                 .roleId(user.getRoleId())
                 .build();
     }
-//
-//    public User createUser(User user){
-//        // 判断数据库中是否存在该用户
-//        User newuser = new User();
-//        newuser.setUserId(user.getUserId());
-////        newuser.setAccount(user.getAccount());
-////        newuser.setUserName(user.getUserName());
-////        newuser.setRoleId(user.getRoleId());
-////        newuser.setAvatar(user.getAvatar());
-////        newuser.setPassword(user.getPassword());
-////        newuser.setCreateTime(new Date());
-//    }
 
-    public BaseResponse register( User user ) {
+
+    @Override
+    public Object register(User user) {
         User user1 = userMapper.selectOne(new QueryWrapper<User>().eq("username", user.getUsername()));
         User user2 = userMapper.selectOne(new QueryWrapper<User>().eq("account", user.getAccount()));
         if (user1 == null && user2 == null) {
@@ -99,17 +88,16 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
             newuser.setUserName(user.getUsername());
             newuser.setRoleId(user.getRoleId());
             newuser.setAvatar(user.getAvatar());
-            newuser.setPassword(user.getPassword());
+            // 密码加密存储在数据库中
+            BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+            newuser.setPassword(passwordEncoder.encode(user.getPassword()));
             newuser.setCreateTime(new Date());
             int res = userMapper.insert(newuser);
             if (res == 1) {
-                return ResultUtils.success(newuser);
-            } else {
-                return ResultUtils.error(400, "注册失败，请检查网络！");
+                return this.copy(newuser);
             }
-        } else {
-            return ResultUtils.error(500, "用户名或账号已存在,请重新注册!");
         }
+        return null;
     }
 }
 

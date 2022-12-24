@@ -27,9 +27,12 @@ import javax.annotation.Resource;
 public class UserController {
     @Resource
     private UserService userService;
+
     @GetMapping(value = "/userinfo")
-    public BaseResponse<Object> currentUser( @AuthenticationPrincipal User user ) {
-        UserDto userDto=userService.copy(user);
+    public BaseResponse<Object> currentUser(@AuthenticationPrincipal User user) {
+        UserDto userDto = userService.copy(user);
         return ResultUtils.success(userDto);
     }
+
+
 }
