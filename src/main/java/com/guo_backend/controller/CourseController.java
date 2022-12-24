@@ -18,7 +18,6 @@ import javax.annotation.Resource;
  **/
 @Component
 @RestController
-@RequestMapping("course")
 @Slf4j
 @Tag(name = "课程信息表")
 public class CourseController {
