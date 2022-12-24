@@ -35,6 +35,7 @@ public class CourseResourse implements Serializable {
     private String chapterId;
 
     private Integer count;
+    private String courseId;
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
 
@@ -54,7 +55,8 @@ public class CourseResourse implements Serializable {
             && (this.getPdf() == null ? other.getPdf() == null : this.getPdf().equals(other.getPdf()))
             && (this.getVideo() == null ? other.getVideo() == null : this.getVideo().equals(other.getVideo()))
             && (this.getChapterId() == null ? other.getChapterId() == null : this.getChapterId().equals(other.getChapterId()))
-            && (this.getCount() == null ? other.getCount()== null : this.getCount().equals(other.getCount()));
+            && (this.getCount() == null ? other.getCount()== null : this.getCount().equals(other.getCount()))
+            && (this.getCourseId() == null ? other.getCourseId()== null : this.getCourseId().equals(other.getCourseId()));
     }
 
     @Override
@@ -78,6 +80,7 @@ public class CourseResourse implements Serializable {
         sb.append(", pdf=").append(pdf);
         sb.append(", video=").append(video);
         sb.append(", chapterId=").append(chapterId);
+        sb.append(", courseId=").append(courseId);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();

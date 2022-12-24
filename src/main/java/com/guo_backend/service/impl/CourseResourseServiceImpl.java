@@ -27,6 +27,16 @@ public class CourseResourseServiceImpl extends ServiceImpl<CourseResourseMapper,
                 .eq("chapter_id", chapterId);
         return courseResourseMapper.selectOne(queryWrapper);
     }
+
+    @Override
+    public CourseResourse getvideo(String chapterId,String courseId) {
+        QueryWrapper<CourseResourse> queryWrapper= Wrappers.<CourseResourse>query()
+                .eq("course_id",courseId)
+                .eq("chapter_id",chapterId);
+        return courseResourseMapper.selectOne(queryWrapper);
+    }
+
+
 }
 
 

@@ -9,6 +9,7 @@
             <result property="pdf" column="pdf" jdbcType="VARCHAR"/>
             <result property="video" column="video" jdbcType="VARCHAR"/>
             <result property="chapterId" column="chapter_id" jdbcType="VARCHAR"/>
+            <result property="courseId" column="course_id" jdbcType="VARCHAR"/>
     </resultMap>
 
     <sql id="Base_Column_List">
