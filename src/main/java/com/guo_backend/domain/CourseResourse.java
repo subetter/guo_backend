@@ -81,6 +81,7 @@ public class CourseResourse implements Serializable {
         sb.append(", resourceId=").append(resourceId);
         sb.append(", pdf=").append(pdf);
         sb.append(", video=").append(video);
+        sb.append(", count=").append(count);
         sb.append(", chapterId=").append(chapterId);
         sb.append(", courseId=").append(courseId);
         sb.append(", isFirst=").append(isFirst);

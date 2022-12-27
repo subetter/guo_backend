@@ -10,4 +10,9 @@ import com.baomidou.mybatisplus.extension.service.IService;
 */
 public interface ChapterService extends IService<Chapter> {
 
+    public Chapter addChapter(Chapter chapter);
+
+    public Chapter addLittleChapter(Chapter chapter);
+
+    public Boolean updateChapter(Chapter chapter);
 }

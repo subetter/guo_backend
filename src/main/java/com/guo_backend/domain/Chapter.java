@@ -35,8 +35,11 @@ public class Chapter implements Serializable {
      */
     private String courseId;
 
+    private String rootChapterId;
+
     @TableLogic
     private Integer isDeleted;
+
 
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
@@ -56,7 +59,8 @@ public class Chapter implements Serializable {
         return (this.getChapterId() == null ? other.getChapterId() == null : this.getChapterId().equals(other.getChapterId()))
             && (this.getChapterName() == null ? other.getChapterName() == null : this.getChapterName().equals(other.getChapterName()))
             && (this.getPreChapterId() == null ? other.getPreChapterId() == null : this.getPreChapterId().equals(other.getPreChapterId()))
-            && (this.getCourseId() == null ? other.getCourseId() == null : this.getCourseId().equals(other.getCourseId()));
+                && (this.getRootChapterId() == null ? other.getPreChapterId() == null : this.getRootChapterId().equals(other.getPreChapterId()))
+                && (this.getCourseId() == null ? other.getCourseId() == null : this.getCourseId().equals(other.getCourseId()));
     }
 
     @Override
@@ -66,6 +70,7 @@ public class Chapter implements Serializable {
         result = prime * result + ((getChapterId() == null) ? 0 : getChapterId().hashCode());
         result = prime * result + ((getChapterName() == null) ? 0 : getChapterName().hashCode());
         result = prime * result + ((getPreChapterId() == null) ? 0 : getPreChapterId().hashCode());
+        result = prime * result + ((getRootChapterId() == null) ? 0 : getRootChapterId().hashCode());
         result = prime * result + ((getCourseId() == null) ? 0 : getCourseId().hashCode());
         return result;
     }
@@ -79,6 +84,7 @@ public class Chapter implements Serializable {
         sb.append(", chapterId=").append(chapterId);
         sb.append(", chapterName=").append(chapterName);
         sb.append(", preChapterId=").append(preChapterId);
+        sb.append(", rootChapterId=").append(rootChapterId);
         sb.append(", courseId=").append(courseId);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");

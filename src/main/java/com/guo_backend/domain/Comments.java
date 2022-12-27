@@ -29,12 +29,6 @@ public class Comments implements Serializable {
      * 
      */
     private String commentContent;
-
-    /**
-     * 
-     */
-    private String reply;
-
     /**
      * 
      */
@@ -55,6 +49,10 @@ public class Comments implements Serializable {
      */
     private Integer status;
 
+    private String rootId;
+
+    private String preId;
+
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
 
@@ -73,11 +71,12 @@ public class Comments implements Serializable {
         return (this.getCommentId() == null ? other.getCommentId() == null : this.getCommentId().equals(other.getCommentId()))
             && (this.getCommentTime() == null ? other.getCommentTime() == null : this.getCommentTime().equals(other.getCommentTime()))
             && (this.getCommentContent() == null ? other.getCommentContent() == null : this.getCommentContent().equals(other.getCommentContent()))
-            && (this.getReply() == null ? other.getReply() == null : this.getReply().equals(other.getReply()))
             && (this.getUserId() == null ? other.getUserId() == null : this.getUserId().equals(other.getUserId()))
             && (this.getUsername() == null ? other.getUsername() == null : this.getUsername().equals(other.getUsername()))
             && (this.getChapterId() == null ? other.getChapterId() == null : this.getChapterId().equals(other.getChapterId()))
-            && (this.getStatus() == null ? other.getStatus() == null : this.getStatus().equals(other.getStatus()));
+                && (this.getRootId() == null ? other.getRootId() == null : this.getRootId().equals(other.getRootId()))
+                && (this.getPreId() == null ? other.getPreId() == null : this.getPreId().equals(other.getChapterId()))
+                && (this.getStatus() == null ? other.getStatus() == null : this.getStatus().equals(other.getStatus()));
     }
 
     @Override
@@ -87,10 +86,11 @@ public class Comments implements Serializable {
         result = prime * result + ((getCommentId() == null) ? 0 : getCommentId().hashCode());
         result = prime * result + ((getCommentTime() == null) ? 0 : getCommentTime().hashCode());
         result = prime * result + ((getCommentContent() == null) ? 0 : getCommentContent().hashCode());
-        result = prime * result + ((getReply() == null) ? 0 : getReply().hashCode());
         result = prime * result + ((getUserId() == null) ? 0 : getUserId().hashCode());
         result = prime * result + ((getUsername() == null) ? 0 : getUsername().hashCode());
         result = prime * result + ((getChapterId() == null) ? 0 : getChapterId().hashCode());
+        result = prime * result + ((getRootId() == null) ? 0 : getRootId().hashCode());
+        result = prime * result + ((getPreId() == null) ? 0 : getPreId().hashCode());
         result = prime * result + ((getStatus() == null) ? 0 : getStatus().hashCode());
         return result;
     }
@@ -104,10 +104,11 @@ public class Comments implements Serializable {
         sb.append(", commentId=").append(commentId);
         sb.append(", commentTime=").append(commentTime);
         sb.append(", commentContent=").append(commentContent);
-        sb.append(", reply=").append(reply);
         sb.append(", userId=").append(userId);
         sb.append(", userName=").append(username);
         sb.append(", chapterId=").append(chapterId);
+        sb.append(", rootId=").append(rootId);
+        sb.append(", preId=").append(preId);
         sb.append(", status=").append(status);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
