@@ -21,13 +21,13 @@ import java.util.List;
  **/
 @Component
 @RestController
-@RequestMapping("api/courseType")
+//@RequestMapping("")
 @Slf4j
 @Tag(name = "课程类别表")
 public class CourseTypeController {
     @Resource
     private CourseTypeService courseTypeService;
-    @GetMapping("all")
+    @GetMapping("api/student/courseType/all")
     @Operation(summary = "获取所有课程类别信息")
     public BaseResponse<List> getall(){
         return ResultUtils.success(courseTypeService.list());

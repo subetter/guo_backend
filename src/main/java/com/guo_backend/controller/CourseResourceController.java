@@ -26,7 +26,7 @@ public class CourseResourceController {
     @Resource
     private CourseResourseService courseResourseService;
 
-    @PostMapping("/pdf")
+    @PostMapping("/cr/pdf")
     @Operation(summary = "下载课程的PDF")
     public BaseResponse<CourseResourse> getPdf(@RequestParam String chapterId) {
         return ResultUtils.success(courseResourseService.getPdf(chapterId));

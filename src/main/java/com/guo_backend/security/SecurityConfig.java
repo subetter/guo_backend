@@ -39,7 +39,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .addFilterBefore(authenticationFilterBean(), LogoutFilter.class)
                 .authorizeRequests()
                 // 配置不需要登录即可访问的路径
-                .antMatchers("/api/**").permitAll()
+                .antMatchers("/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .exceptionHandling().authenticationEntryPoint(unauthorizedHandler)

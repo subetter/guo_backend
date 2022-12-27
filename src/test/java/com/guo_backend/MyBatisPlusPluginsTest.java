@@ -35,7 +35,7 @@ public class MyBatisPlusPluginsTest {
     @Test
     void testPageVo(){
         Page<Chapter> page = new Page<>();
-        chapterMapper.selectPageVo(page,"1");
+//        chapterMapper.selectPageVo(page,"1");
         System.out.println(page.getRecords());
 //        获取当前页的页码
         System.out.println(page.getCurrent());

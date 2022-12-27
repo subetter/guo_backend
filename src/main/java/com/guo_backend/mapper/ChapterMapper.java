@@ -21,7 +21,7 @@ public interface ChapterMapper extends BaseMapper<Chapter> {
      * @param course_id
      * @return
      */
-    Page<Chapter> selectPageVo(@Param("page") Page<Chapter> page,@Param("course_id") String course_id);
+//    Page<Chapter> selectPageVo(@Param("page") Page<Chapter> page,@Param("course_id") String course_id);
 }
 
 
