@@ -1,6 +1,7 @@
 package com.guo_backend.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.guo_backend.domain.User;
 import com.guo_backend.domain.dto.Comment;
@@ -120,6 +121,24 @@ public class CommentsServiceImpl extends ServiceImpl<CommentsMapper, Comments>
         return CommentsDto.builder()
                 .res(res)
                 .build();
+    }
+
+    @Override
+    public Boolean updateCommentStatus(Comments comments) {
+        boolean flag;
+        QueryWrapper<Comments> queryWrapper=new QueryWrapper<>();
+        queryWrapper.eq("comment_id",comments.getCommentId());
+        Comments comments1=commentsMapper.selectOne(queryWrapper);
+        comments1.setStatus(comments.getStatus());
+        UpdateWrapper<Comments> updateWrapper=new UpdateWrapper<>();
+        updateWrapper.set("status",comments1.getStatus());
+        int res=commentsMapper.update(comments1,queryWrapper);
+        if(res>0){
+            flag=true;
+        }
+        else
+            flag=false;
+        return flag;
     }
 
 }

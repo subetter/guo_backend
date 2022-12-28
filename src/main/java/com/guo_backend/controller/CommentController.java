@@ -4,7 +4,6 @@ import com.guo_backend.common.BaseResponse;
 import com.guo_backend.common.ResultUtils;
 import com.guo_backend.domain.Comments;
 import com.guo_backend.domain.User;
-import com.guo_backend.domain.dto.Comment;
 import com.guo_backend.domain.dto.CommentsDto;
 import com.guo_backend.service.CommentsService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -68,5 +67,10 @@ public class CommentController {
     @GetMapping("/get/comments")
     public BaseResponse<CommentsDto> getCommentUnchecked(){
         return ResultUtils.success(commentsService.getCommentUnchecked());
+    }
+    @Operation(summary = "修改已经审核过的评论状态")
+    @PostMapping(value = "/update/status")
+    public BaseResponse<Boolean> updateCommentStatus(@RequestBody Comments comments){
+        return ResultUtils.success(commentsService.updateCommentStatus(comments));
     }
 }

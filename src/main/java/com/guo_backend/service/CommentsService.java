@@ -17,4 +17,5 @@ public interface CommentsService extends IService<Comments> {
     CommentsDto getreply(String commentId);
     CommentsDto getRreply(String commentId);
     CommentsDto getCommentUnchecked();
+    Boolean updateCommentStatus(Comments comments);
 }
