@@ -121,7 +121,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
         QueryWrapper<User> queryWrapper=new QueryWrapper<>();
         queryWrapper.eq("user_id",user.getUserId());
         User user1=userMapper.selectOne(queryWrapper);
-        user1.setRoleId(user.getRoleId());
+        user1.setRoleId(4);
         UpdateWrapper<User> updateWrapper=new UpdateWrapper<>();
         updateWrapper.set("role_id",user1.getRoleId());
         int res=userMapper.update(user1,queryWrapper);
