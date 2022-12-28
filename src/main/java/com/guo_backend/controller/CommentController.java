@@ -11,6 +11,7 @@ import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -36,9 +37,30 @@ public class CommentController {
         System.out.println("User:"+user+"\n comments:"+comments);
         return ResultUtils.success(commentsService.createComments(comments,user));
     }
+
+    // 用户回复评论
+    @Operation(summary = "回复评论")
+    @PostMapping("/reply")
+    public BaseResponse<Comments> reply(@AuthenticationPrincipal User user, @RequestBody Comments comments){
+//        System.out.println("User:"+user+"\n comments:"+comments);
+        return ResultUtils.success(commentsService.createComments(comments,user));
+    }
+
     @Operation(summary = "获取评论列表")
     @PostMapping("/student/getcomments")
     public BaseResponse<CommentsDto> getCommentList(@RequestParam String chapterId, @RequestParam String userId){
         return ResultUtils.success(commentsService.getCommentList(chapterId,userId));
+    }
+
+//    @Operation(summary = "获取评论的所有回复")
+//    @GetMapping("/allreply")
+//    public BaseResponse<CommentsDto> getReply(@RequestParam String commentId){
+//        return ResultUtils.success(commentsService.getreply(commentId));
+//    }
+
+    @Operation(summary = "获取回复评论的回复")
+    @GetMapping("/specify/reply")
+    public BaseResponse<CommentsDto> getRReply(@RequestParam String commentId){
+        return ResultUtils.success(commentsService.getRreply(commentId));
     }
 }

@@ -2,6 +2,7 @@ package com.guo_backend.service;
 
 import com.guo_backend.domain.CourseResourse;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.guo_backend.domain.dto.ViewsCountDto;
 
 /**
 * @author fu
@@ -12,4 +13,7 @@ public interface CourseResourseService extends IService<CourseResourse> {
     CourseResourse getPdf(String chapterId);
     CourseResourse getvideo(String chapterId,String courseId);
     CourseResourse getFirstVideo(String courseId);
+
+    // 观看次数统计
+    ViewsCountDto viewscount();
 }

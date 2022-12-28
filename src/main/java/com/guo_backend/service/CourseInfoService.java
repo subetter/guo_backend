@@ -3,6 +3,7 @@ package com.guo_backend.service;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.guo_backend.domain.CourseInfo;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.guo_backend.domain.dto.Calc1Dto;
 import com.guo_backend.domain.dto.CourseinfoDto;
 
 import java.util.List;
@@ -15,4 +16,6 @@ import java.util.List;
 public interface CourseInfoService extends IService<CourseInfo> {
     CourseinfoDto getCourseList(String search, String typeId, Long currentPage);
 
+    //  各个课程类型占比统计
+    Calc1Dto calc();
 }

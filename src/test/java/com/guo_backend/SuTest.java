@@ -1,15 +1,18 @@
 package com.guo_backend;
 
-import com.baomidou.mybatisplus.core.conditions.query.Query;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.guo_backend.domain.Chapter;
 import com.guo_backend.domain.CourseInfo;
 import com.guo_backend.domain.User;
+import com.guo_backend.domain.dto.Calc1Dto;
+import com.guo_backend.domain.dto.ViewsCount;
 import com.guo_backend.domain.dto.CourseinfoDto;
+import com.guo_backend.domain.dto.ViewsCountDto;
 import com.guo_backend.mapper.CourseInfoMapper;
 import com.guo_backend.service.CourseResourseService;
 import com.guo_backend.service.impl.ChapterServiceImpl;
+import com.guo_backend.service.impl.CommentsServiceImpl;
 import com.guo_backend.service.impl.CourseInfoServiceImpl;
 import com.guo_backend.service.impl.UserServiceImpl;
 import org.junit.jupiter.api.Test;
@@ -17,11 +20,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.annotation.Resource;
-import java.nio.charset.spi.CharsetProvider;
 import java.util.Date;
 import java.util.List;
-import java.util.Locale;
-import java.util.UUID;
 
 @SpringBootTest
 public class SuTest {
@@ -116,5 +116,37 @@ public class SuTest {
         chapter.setChapterName("5.2 领域模型设计修改版");
         chapter.setChapterId("78ec8571-95a7-4221-869c-3071042c40cb");
         System.out.println(chapterService.updateChapter(chapter));
+    }
+
+    @Resource
+    CommentsServiceImpl commentsService;
+     //获取某条评论的所有回复
+    @Test
+    void test05(){
+        System.out.println(commentsService.getreply("1"));
+    }
+
+    // 获取回复的回复
+    @Test
+    void test06(){
+        System.out.println(commentsService.getRreply("332d8204-ca03-480b-9bd5-c7512c04db91"));
+    }
+
+
+    @Resource
+    CourseInfoServiceImpl courseInfoService;
+    // 观看次数统计
+    @Test
+    void test07(){
+        ViewsCountDto res = courseResourseService.viewscount();
+        List<ViewsCount> list = res.getRes();
+        list.forEach(System.out::println);
+    }
+
+    // 统计类型占比
+    @Test
+    void test08(){
+        Calc1Dto result = courseInfoService.calc();
+        result.getRes().forEach(System.out::println);
     }
 }

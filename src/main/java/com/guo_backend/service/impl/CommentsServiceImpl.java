@@ -36,6 +36,8 @@ public class CommentsServiceImpl extends ServiceImpl<CommentsMapper, Comments>
             newcomments.setUsername(user.getUsername());
             newcomments.setChapterId(comments.getChapterId());
             newcomments.setCommentContent(comments.getCommentContent());
+            newcomments.setRootId(comments.getRootId());
+            newcomments.setPreId(comments.getPreId());
             newcomments.setCommentTime(new Date());
             commentsMapper.insert(newcomments);
             return newcomments;
@@ -60,6 +62,37 @@ public class CommentsServiceImpl extends ServiceImpl<CommentsMapper, Comments>
         }
         return null;
     }
+
+    @Override
+    public CommentsDto getreply(String commentId) {
+        try{
+            QueryWrapper<Comments> queryWrapper = new QueryWrapper<>();
+            queryWrapper.eq("root_id",commentId);
+            List<Comments> list = commentsMapper.selectList(queryWrapper);
+            return CommentsDto.builder()
+                    .results(list)
+                    .build();
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
+    public CommentsDto getRreply(String commentId) {
+        try{
+            QueryWrapper<Comments> queryWrapper = new QueryWrapper<>();
+            queryWrapper.eq("pre_id",commentId);
+            List<Comments> list = commentsMapper.selectList(queryWrapper);
+            return CommentsDto.builder()
+                    .results(list)
+                    .build();
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+
 }
 
 

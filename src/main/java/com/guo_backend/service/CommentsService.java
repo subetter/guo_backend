@@ -14,4 +14,6 @@ public interface CommentsService extends IService<Comments> {
 
     Comments createComments(Comments comments, User user);
     CommentsDto getCommentList(String chapterId, String userId);
+    CommentsDto getreply(String commentId);
+    CommentsDto getRreply(String commentId);
 }
