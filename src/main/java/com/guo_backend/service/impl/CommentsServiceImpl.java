@@ -10,6 +10,7 @@ import com.guo_backend.domain.Comments;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -52,7 +53,7 @@ public class CommentsServiceImpl extends ServiceImpl<CommentsMapper, Comments>
         try {
             QueryWrapper<Comments> queryWrapper=new QueryWrapper<>();
             queryWrapper.eq("chapter_id",chapterId)
-                    .eq("user_id",userId);
+                    .eq("root_id","0");
             List<Comments> commentsList=commentsMapper.selectList(queryWrapper);
             return CommentsDto.builder()
                     .results(commentsList)

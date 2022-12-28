@@ -27,12 +27,9 @@ public class AuthController {
     @Resource
     private UserService userService;
 
-    public AuthController(UserService adminService) {
-        this.userService = adminService;
-    }
 
-    @Operation(summary = "登录接口")
     @PostMapping(value = "/login")
+    @Operation(summary = "登录接口")
     public BaseResponse<Object> login(@RequestParam String username, @RequestParam String password, HttpServletResponse response) {
         Object userDto = userService.login(response, username, password);
         if (userDto == null) {

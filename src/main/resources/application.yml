@@ -7,6 +7,12 @@ spring:
     url: jdbc:mysql://sh-cynosdbmysql-grp-o1qwdcls.sql.tencentcdb.com:24659/guo?characterEncoding=utf-8&useSSL=false
     username: GROOT
     password: GuoChang123
+  servlet:
+    multipart:
+      enabled: true #是否启用http上传处理
+      max-request-size: 1000MB #设置总上传的数据大小，最大请求文件的大小
+      max-file-size: 800MB #设置单个文件最大长度
+      file-size-threshold: 800MB #当文件达到多少时进行磁盘写入
   file-storage:
     default-platform: tencent-cos-1
     tencent-cos:

@@ -1,5 +1,8 @@
 package com.guo_backend.service.impl;
 
+import cn.hutool.core.lang.UUID;
+import cn.xuyanwu.spring.file.storage.FileInfo;
+import cn.xuyanwu.spring.file.storage.FileStorageService;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -13,10 +16,12 @@ import com.guo_backend.mapper.CourseInfoMapper;
 import com.guo_backend.mapper.CourseResourseMapper;
 import com.guo_backend.service.CourseResourseService;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * @author fu
@@ -98,6 +103,113 @@ public class CourseResourseServiceImpl extends ServiceImpl<CourseResourseMapper,
             e.printStackTrace();
         }
         return null;
+    }
+
+    @Override
+    public CourseResourse getinfo( String courseId, String chapterId ) {
+        QueryWrapper<CourseResourse> queryWrapper=new QueryWrapper<>();
+        queryWrapper.eq("course_id",courseId)
+                .eq("chapter_id",chapterId);
+        return this.getOne(queryWrapper);
+    }
+
+    @Override
+    public Boolean deleteChapter( String resourceId ) {
+        return this.removeById(resourceId);
+    }
+
+    @Override
+    public CourseResourse updateInfo( CourseResourse courseResourse ) {
+        if ( this.updateById(courseResourse)){
+            return courseResourse;
+        }
+        else {
+            return null;
+        }
+    }
+
+    @Resource
+    FileStorageService fileStorageService;
+    @Override
+    public CourseResourse addPDF( String courseId, String chapterId, MultipartFile file ) {
+        QueryWrapper<CourseResourse> queryWrapper=new QueryWrapper<>();
+        queryWrapper.eq("course_id",courseId)
+                .eq("chapter_id",chapterId);
+        CourseResourse courseResourse=this.getOne(queryWrapper);
+        if (Objects.isNull(courseResourse)){
+            String filename = file.getOriginalFilename();
+            FileInfo upload = fileStorageService.of(file)
+                    .setSaveFilename(chapterId+filename)
+                    .setPath("pdf/")
+                    .upload();
+            CourseResourse courseResourse1=CourseResourse.builder()
+                    .chapterId(chapterId)
+                    .courseId(courseId)
+                    .isFirst(0)
+                    .pdf(upload.getUrl())
+                    .resourceId(UUID.fastUUID().toString()).build();
+            if (this.save(courseResourse1)){
+                return courseResourse1;
+            }
+            else {
+                return null;
+            }
+        }
+        else {
+            String filename = file.getOriginalFilename();
+            FileInfo upload = fileStorageService.of(file)
+                    .setSaveFilename(chapterId+filename)
+                    .setPath("pdf/")
+                    .upload();
+            courseResourse.setPdf(upload.getUrl());
+            if (this.update(courseResourse,queryWrapper)) {
+                return courseResourse;
+            }
+            else {
+                return null;
+            }
+        }
+    }
+
+    @Override
+    public CourseResourse addVideo( String courseId, String chapterId, MultipartFile file ) {
+        QueryWrapper<CourseResourse> queryWrapper=new QueryWrapper<>();
+        queryWrapper.eq("course_id",courseId)
+                .eq("chapter_id",chapterId);
+        CourseResourse courseResourse=this.getOne(queryWrapper);
+        if (Objects.isNull(courseResourse)){
+            String filename = file.getOriginalFilename();
+            FileInfo upload = fileStorageService.of(file)
+                    .setSaveFilename(chapterId+filename)
+                    .setPath("video/")
+                    .upload();
+            CourseResourse courseResourse1=CourseResourse.builder()
+                    .chapterId(chapterId)
+                    .courseId(courseId)
+                    .isFirst(0)
+                    .video(upload.getUrl())
+                    .resourceId(UUID.fastUUID().toString()).build();
+            if (this.save(courseResourse1)){
+                return courseResourse1;
+            }
+            else {
+                return null;
+            }
+        }
+        else {
+            String filename = file.getOriginalFilename();
+            FileInfo upload = fileStorageService.of(file)
+                    .setSaveFilename(chapterId+filename)
+                    .setPath("video/")
+                    .upload();
+            courseResourse.setVideo(upload.getUrl());
+            if (this.update(courseResourse,queryWrapper)) {
+                return courseResourse;
+            }
+            else {
+                return null;
+            }
+        }
     }
 
 
