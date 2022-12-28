@@ -4,6 +4,7 @@ import com.guo_backend.common.BaseResponse;
 import com.guo_backend.common.ResultUtils;
 import com.guo_backend.domain.Comments;
 import com.guo_backend.domain.User;
+import com.guo_backend.domain.dto.Comment;
 import com.guo_backend.domain.dto.CommentsDto;
 import com.guo_backend.service.CommentsService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -62,5 +63,10 @@ public class CommentController {
     @GetMapping("/specify/reply")
     public BaseResponse<CommentsDto> getRReply(@RequestParam String commentId){
         return ResultUtils.success(commentsService.getRreply(commentId));
+    }
+    @Operation(summary = "获取未审核的评论")
+    @GetMapping("/get/comments")
+    public BaseResponse<CommentsDto> getCommentUnchecked(){
+        return ResultUtils.success(commentsService.getCommentUnchecked());
     }
 }

@@ -3,6 +3,7 @@ package com.guo_backend.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.guo_backend.domain.User;
+import com.guo_backend.domain.dto.Comment;
 import com.guo_backend.domain.dto.CommentsDto;
 import com.guo_backend.mapper.CommentsMapper;
 import com.guo_backend.service.CommentsService;
@@ -92,6 +93,33 @@ public class CommentsServiceImpl extends ServiceImpl<CommentsMapper, Comments>
             e.printStackTrace();
         }
         return null;
+    }
+
+    @Override
+    public CommentsDto getCommentUnchecked() {
+        //用来存储结果
+        List<Comment> res=new ArrayList<>();
+        //查询未审核的评论列表
+        QueryWrapper<Comments> queryWrapper=new QueryWrapper<>();
+        queryWrapper.eq("status",0);
+        List<Comments> list=commentsMapper.selectList(queryWrapper);
+        //循环遍历列表
+        for(Comments cm :list){
+            //遍历一次生成一个对象
+            Comment cm1=new Comment();
+            QueryWrapper<Comments> queryWrapper1=new QueryWrapper<>();
+            queryWrapper1.eq("comment_id",cm.getCommentId());
+            Comments comments=commentsMapper.selectOne(queryWrapper1);
+            //根据id查出对应的commentTime，
+            cm1.setCommentId(comments.getCommentId());
+            cm1.setCommentTime(comments.getCommentTime());
+            cm1.setCommentContent(comments.getCommentContent());
+            cm1.setUsername(comments.getUsername());
+            res.add(cm1);
+        }
+        return CommentsDto.builder()
+                .res(res)
+                .build();
     }
 
 }
