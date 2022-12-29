@@ -3,6 +3,7 @@ import com.guo_backend.common.BaseResponse;
 import com.guo_backend.common.ErrorCode;
 import com.guo_backend.common.ResultUtils;
 import com.guo_backend.domain.Chapter;
+import com.guo_backend.domain.dto.ChapterDto;
 import com.guo_backend.service.impl.ChapterServiceImpl;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -50,10 +51,10 @@ public class ChapterController {
 
     @Operation(summary = "获取章节信息")
     @RequestMapping(value = "/api/chapter/all")
-    public BaseResponse<Chapter> getChapterInfo(@RequestParam String courseId){
-        if (courseId==null){
-            return ResultUtils.error(ErrorCode.NULL_ERROR);
-        }
+    public BaseResponse<ChapterDto> getChapterInfo(@RequestParam String courseId){
+//        if (courseId==null){
+//            return ResultUtils.error(ErrorCode.NULL_ERROR);
+//        }
         return ResultUtils.success(chapterService.getChapterInfo(courseId));
     }
     @Operation(summary = "删除大章节")

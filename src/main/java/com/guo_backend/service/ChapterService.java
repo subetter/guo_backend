@@ -12,7 +12,7 @@ import java.util.List;
 * @createDate 2022-12-04 23:23:09
 */
 public interface ChapterService extends IService<Chapter> {
-    Chapter getChapterInfo(String courseId);
+    ChapterDto getChapterInfo(String courseId);
 
     public Chapter addChapter(Chapter chapter);
 

@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.guo_backend.domain.Chapter;
+import com.guo_backend.domain.dto.ChapterDto;
 import com.guo_backend.mapper.ChapterMapper;
 import com.guo_backend.service.ChapterService;
 import org.springframework.stereotype.Service;
@@ -24,12 +25,14 @@ public class ChapterServiceImpl extends ServiceImpl<ChapterMapper, Chapter>
     private ChapterMapper chapterMapper;
 
     @Override
-    public Chapter getChapterInfo( String courseId ) {
+    public ChapterDto getChapterInfo(String courseId ) {
         try {
             QueryWrapper<Chapter> queryWrapper = new QueryWrapper<>();
             queryWrapper.eq("course_id", courseId);
             List<Chapter> chapterList = chapterMapper.selectList(queryWrapper);
-            return (Chapter) chapterList;
+            return ChapterDto.builder()
+                    .result(chapterList)
+                    .build();
         } catch (Exception e) {
             e.printStackTrace();
         }
