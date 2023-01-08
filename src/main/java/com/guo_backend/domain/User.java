@@ -53,7 +53,7 @@ public class User implements UserDetails{
      * 
      */
     @TableField(value = "username")
-    private String userName;
+    private String username;
 
     /**
      * 
@@ -108,7 +108,7 @@ public class User implements UserDetails{
         sb.append(", password=").append(password);
         sb.append(", roleId=").append(roleId);
         sb.append(", avatar=").append(avatar);
-        sb.append(", userName=").append(userName);
+        sb.append(", username=").append(username);
         sb.append(", createTime=").append(createTime);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
@@ -122,7 +122,7 @@ public class User implements UserDetails{
 
     @Override
     public String getUsername() {
-        return this.userName;
+        return this.username;
     }
 
     @Override

@@ -40,9 +40,6 @@ public class CourseInfoServiceImpl extends ServiceImpl<CourseInfoMapper, CourseI
             Page<CourseInfo> page = new Page<>(currentPage, 30);
             Page<CourseInfo> courselist = courseInfoMapper.selectPage(page, queryWrapper);
             return CourseinfoDto.builder()
-                    .pageSize(30L)
-                    .currentPage(currentPage)
-                    .records(page.getTotal())
                     .results(courselist)
                     .build();
         } catch (Exception e) {

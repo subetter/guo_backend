@@ -32,7 +32,7 @@ public class SuTest {
     @Test
     void testregister(){
         User user = new User();
-        user.setUserName("刘昕蕊");
+        user.setUsername("刘昕蕊");
         user.setUserId("3");
         user.setAccount("20201120510");
         user.setPassword("1234567");
@@ -127,10 +127,10 @@ public class SuTest {
     }
 
     // 获取回复的回复
-    @Test
-    void test06(){
-        System.out.println(commentsService.getRreply("332d8204-ca03-480b-9bd5-c7512c04db91"));
-    }
+//    @Test
+//    void test06(){
+//        System.out.println(commentsService.getRreply("332d8204-ca03-480b-9bd5-c7512c04db91"));
+//    }
 
 
     @Resource

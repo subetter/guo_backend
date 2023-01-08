@@ -8,6 +8,7 @@ import com.guo_backend.domain.dto.UserDto;
 import com.guo_backend.service.CourseInfoService;
 import com.guo_backend.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Component;
@@ -43,7 +44,7 @@ public class AuthController {
 
     @Operation(summary = "注册接口")
     @PostMapping(value = "/register")
-    public BaseResponse<Object> register(@RequestBody User user) {
+    public BaseResponse<Object> register(User user) {
         Object userDto = userService.register(user);
         if (userDto == null) {
             return ResultUtils.error(500, "用户名或账号已存在，请重新注册！");

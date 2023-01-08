@@ -5,6 +5,7 @@ import com.guo_backend.common.ResultUtils;
 import com.guo_backend.domain.Comments;
 import com.guo_backend.domain.User;
 import com.guo_backend.domain.dto.CommentsDto;
+import com.guo_backend.domain.dto.ReplyDto;
 import com.guo_backend.service.CommentsService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @RestController
 @Component
@@ -33,17 +35,16 @@ public class CommentController {
     // 用户发表评论
     @Operation(summary = "用户发表评论")
     @PostMapping("/comment/create")
-    public BaseResponse<Comments> createComments(@AuthenticationPrincipal User user, @RequestBody Comments comments){
-        System.out.println("User:"+user+"\n comments:"+comments);
-        return ResultUtils.success(commentsService.createComments(comments,user));
+    public BaseResponse<Comments> createComments(@RequestBody Comments comments){
+//        System.out.println("User:"+user+"\n comments:"+comments);
+        return ResultUtils.success(commentsService.dispalyComment(comments));
     }
 
     // 用户回复评论
     @Operation(summary = "回复评论")
     @PostMapping("/reply")
-    public BaseResponse<Comments> reply(@AuthenticationPrincipal User user, @RequestBody Comments comments){
-//        System.out.println("User:"+user+"\n comments:"+comments);
-        return ResultUtils.success(commentsService.createComments(comments,user));
+    public BaseResponse<Comments> reply(@RequestBody Comments comments){
+        return ResultUtils.success(commentsService.createComments(comments));
     }
 
     @Operation(summary = "获取评论列表")
@@ -52,11 +53,11 @@ public class CommentController {
         return ResultUtils.success(commentsService.getCommentList(chapterId,userId));
     }
 
-//    @Operation(summary = "获取评论的所有回复")
-//    @GetMapping("/allreply")
-//    public BaseResponse<CommentsDto> getReply(@RequestParam String commentId){
-//        return ResultUtils.success(commentsService.getreply(commentId));
-//    }
+    @Operation(summary = "获取评论的所有回复")
+    @GetMapping("/allreply")
+    public BaseResponse<List<ReplyDto>> getReply(@RequestParam String commentId){
+        return ResultUtils.success(commentsService.getreply(commentId));
+    }
 
     @Operation(summary = "获取回复评论的回复")
     @GetMapping("/specify/reply")

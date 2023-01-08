@@ -1,6 +1,5 @@
 package com.guo_backend.controller;
 
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.guo_backend.common.BaseResponse;
 import com.guo_backend.common.ResultUtils;
 import com.guo_backend.domain.CourseInfo;
@@ -8,7 +7,6 @@ import com.guo_backend.domain.dto.CourseRequest;
 import com.guo_backend.domain.dto.CourseinfoDto;
 import com.guo_backend.service.CourseInfoService;
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
@@ -22,7 +20,6 @@ import javax.annotation.Resource;
  **/
 @Component
 @RestController
-//@RequestMapping(value = "/course")
 @Slf4j
 @Tag(name = "课程信息表")
 public class CourseController {

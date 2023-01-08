@@ -70,7 +70,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
                 .avatar(user.getAvatar())
                 .createTime(user.getCreateTime())
                 .userId(user.getUserId())
-                .userName(user.getUsername())
+                .username(user.getUsername())
                 .roleId(user.getRoleId())
                 .build();
     }
@@ -85,7 +85,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
             String uuid = UUID.randomUUID().toString();
             newuser.setUserId(uuid);
             newuser.setAccount(user.getAccount());
-            newuser.setUserName(user.getUsername());
+            newuser.setUsername(user.getUsername());
             newuser.setRoleId(user.getRoleId());
             newuser.setAvatar(user.getAvatar());
             // 密码加密存储在数据库中

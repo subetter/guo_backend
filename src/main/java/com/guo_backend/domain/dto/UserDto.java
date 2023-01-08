@@ -20,6 +20,6 @@ public class UserDto {
     private String account;
     private Integer roleId;
     private String avatar;
-    private String userName;
+    private String username;
     private Date createTime;
 }

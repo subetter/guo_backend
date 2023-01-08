@@ -12,8 +12,5 @@ import lombok.Setter;
 @Data
 @Builder
 public class CourseinfoDto {
-    private Long currentPage;
-    private Long pageSize;
-    private Long records;
     private Page<CourseInfo> results;
 }
