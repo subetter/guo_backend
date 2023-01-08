@@ -1,8 +1,10 @@
 package com.guo_backend.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.guo_backend.domain.User;
+import com.guo_backend.domain.dto.Comment;
 import com.guo_backend.domain.dto.CommentsDto;
 import com.guo_backend.domain.dto.ReplyDto;
 import com.guo_backend.mapper.CommentsMapper;
@@ -80,7 +82,7 @@ public class CommentsServiceImpl extends ServiceImpl<CommentsMapper, Comments>
         try {
             QueryWrapper<Comments> queryWrapper=new QueryWrapper<>();
             queryWrapper.eq("chapter_id",chapterId)
-                    .eq("user_id",userId);
+                    .eq("root_id","0");
             List<Comments> commentsList=commentsMapper.selectList(queryWrapper);
             return CommentsDto.builder()
                     .results(commentsList)
@@ -141,6 +143,51 @@ public class CommentsServiceImpl extends ServiceImpl<CommentsMapper, Comments>
 //        }
 //        return null;
 //    }
+
+    @Override
+    public CommentsDto getCommentUnchecked() {
+        //用来存储结果
+        List<Comment> res=new ArrayList<>();
+        //查询未审核的评论列表
+        QueryWrapper<Comments> queryWrapper=new QueryWrapper<>();
+        queryWrapper.eq("status",0);
+        List<Comments> list=commentsMapper.selectList(queryWrapper);
+        //循环遍历列表
+        for(Comments cm :list){
+            //遍历一次生成一个对象
+            Comment cm1=new Comment();
+            QueryWrapper<Comments> queryWrapper1=new QueryWrapper<>();
+            queryWrapper1.eq("comment_id",cm.getCommentId());
+            Comments comments=commentsMapper.selectOne(queryWrapper1);
+            //根据id查出对应的commentTime，
+            cm1.setCommentId(comments.getCommentId());
+            cm1.setCommentTime(comments.getCommentTime());
+            cm1.setCommentContent(comments.getCommentContent());
+            cm1.setUsername(comments.getUsername());
+            res.add(cm1);
+        }
+        return CommentsDto.builder()
+                .res(res)
+                .build();
+    }
+
+    @Override
+    public Boolean updateCommentStatus(Comments comments) {
+        boolean flag;
+        QueryWrapper<Comments> queryWrapper=new QueryWrapper<>();
+        queryWrapper.eq("comment_id",comments.getCommentId());
+        Comments comments1=commentsMapper.selectOne(queryWrapper);
+        comments1.setStatus(comments.getStatus());
+        UpdateWrapper<Comments> updateWrapper=new UpdateWrapper<>();
+        updateWrapper.set("status",comments1.getStatus());
+        int res=commentsMapper.update(comments1,queryWrapper);
+        if(res>0){
+            flag=true;
+        }
+        else
+            flag=false;
+        return flag;
+    }
 
 }
 

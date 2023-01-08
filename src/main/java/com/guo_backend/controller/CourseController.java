@@ -1,8 +1,10 @@
 package com.guo_backend.controller;
 
 import com.guo_backend.common.BaseResponse;
+import com.guo_backend.common.ErrorCode;
 import com.guo_backend.common.ResultUtils;
 import com.guo_backend.domain.CourseInfo;
+import com.guo_backend.domain.User;
 import com.guo_backend.domain.dto.CourseRequest;
 import com.guo_backend.domain.dto.CourseinfoDto;
 import com.guo_backend.service.CourseInfoService;
@@ -45,4 +47,25 @@ public class CourseController {
         System.out.println("courselist:" + courselist);
         return ResultUtils.success(courselist);
     }
+
+    @Operation(summary = "查询课程信息")
+    @RequestMapping(value = "/course/getinfo", method = RequestMethod.GET)
+    public BaseResponse<CourseInfo> getCourseInfo(@RequestParam String courseId) {
+        return ResultUtils.success(courseInfoService.getById(courseId));
+    }
+    @Operation(summary = "更新课程信息")
+    @PostMapping(value = "/update/courseinfo")
+    public BaseResponse<Boolean> upUserRoleId( CourseInfo courseInfo){
+        return ResultUtils.success(courseInfoService.updateCourseInfo(courseInfo));
+    }
+    @Operation(summary = "根据课程id删除课程")
+    @DeleteMapping(value = "/delete/course")
+    public BaseResponse<Boolean> deleteCourse(@RequestParam String courseId ) {
+        if (courseId == null) {
+            return ResultUtils.error(ErrorCode.NULL_ERROR);
+        }
+        return ResultUtils.success(courseInfoService.deleteCourse(courseId));
+    }
+
+
 }

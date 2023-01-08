@@ -18,4 +18,6 @@ public interface CourseInfoService extends IService<CourseInfo> {
 
     //  各个课程类型占比统计
     Calc1Dto calc();
+    Boolean updateCourseInfo(CourseInfo courseInfo);
+    Boolean deleteCourse(String courseId);
 }

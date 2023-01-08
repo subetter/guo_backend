@@ -64,4 +64,14 @@ public class CommentController {
     public BaseResponse<CommentsDto> getRReply(@RequestParam String commentId){
         return ResultUtils.success(commentsService.getRreply(commentId));
     }
+    @Operation(summary = "获取未审核的评论")
+    @GetMapping("/get/comments")
+    public BaseResponse<CommentsDto> getCommentUnchecked(){
+        return ResultUtils.success(commentsService.getCommentUnchecked());
+    }
+    @Operation(summary = "修改已经审核过的评论状态")
+    @PostMapping(value = "/update/status")
+    public BaseResponse<Boolean> updateCommentStatus(@RequestBody Comments comments){
+        return ResultUtils.success(commentsService.updateCommentStatus(comments));
+    }
 }

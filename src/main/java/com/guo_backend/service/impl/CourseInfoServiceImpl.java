@@ -1,6 +1,7 @@
 package com.guo_backend.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.guo_backend.domain.CourseInfo;
@@ -88,6 +89,37 @@ public class CourseInfoServiceImpl extends ServiceImpl<CourseInfoMapper, CourseI
             e.printStackTrace();
         }
         return null;
+    }
+
+    @Override
+    public Boolean updateCourseInfo(CourseInfo courseInfo) {
+        boolean flag;
+        QueryWrapper<CourseInfo> queryWrapper=new QueryWrapper<>();
+        queryWrapper.eq("course_id",courseInfo.getCourseId());
+        CourseInfo courseInfo1=courseInfoMapper.selectOne(queryWrapper);
+        courseInfo1.setCourseName(courseInfo.getCourseName());
+        courseInfo1.setLogContent(courseInfo.getLogContent());
+        courseInfo1.setCourseType(courseInfo.getCourseType());
+        courseInfo1.setChapterQuantity(courseInfo.getChapterQuantity());
+        courseInfo1.setCoverImg(courseInfo.getCoverImg());
+        UpdateWrapper<CourseInfo> updateWrapper=new UpdateWrapper<>();
+        updateWrapper.set("course_name",courseInfo1.getCourseName());
+        updateWrapper.set("log_content",courseInfo1.getLogContent());
+        updateWrapper.set("course_type",courseInfo1.getCourseType());
+        updateWrapper.set("chapter_quantity",courseInfo1.getChapterQuantity());
+        updateWrapper.set("cover_img",courseInfo1.getCoverImg());
+        int results=courseInfoMapper.update(courseInfo1,queryWrapper);
+        if(results>0){
+            flag=true;
+        }
+        else
+            flag=false;
+        return flag;
+    }
+
+    @Override
+    public Boolean deleteCourse(String courseId) {
+        return this.removeById(courseId);
     }
 
 

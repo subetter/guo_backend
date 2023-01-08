@@ -3,6 +3,7 @@ package com.guo_backend.service;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.guo_backend.domain.User;
 import com.guo_backend.domain.dto.UserDto;
+import com.guo_backend.domain.dto.UserList;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -15,4 +16,6 @@ public interface UserService extends IService<User> {
     Object login( HttpServletResponse response, String username, String password);
     UserDto copy( User user );
     Object register(User user);
+    UserList getalluser();
+    Boolean upUserRoleId(User user);
 }

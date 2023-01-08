@@ -4,6 +4,8 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
+
+import lombok.Builder;
 import lombok.Data;
 
 /**
@@ -12,6 +14,7 @@ import lombok.Data;
  */
 @TableName(value ="course_resourse")
 @Data
+@Builder
 public class CourseResourse implements Serializable {
     /**
      * 
