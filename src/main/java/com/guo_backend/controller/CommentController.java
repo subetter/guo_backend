@@ -56,7 +56,7 @@ public class CommentController {
     @Operation(summary = "获取评论的所有回复")
     @GetMapping("/allreply")
     public BaseResponse<List<ReplyDto>> getReply(@RequestParam String commentId){
-        return ResultUtils.success(commentsService.getreply(commentId));
+        return ResultUtils.success(commentsService.getreply1(commentId));
     }
 
     @Operation(summary = "获取回复评论的回复")

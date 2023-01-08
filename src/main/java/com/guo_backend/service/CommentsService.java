@@ -20,7 +20,7 @@ public interface CommentsService extends IService<Comments> {
 
     Comments createComments(Comments comments);
     CommentsDto getCommentList(String chapterId, String userId);
-    List<ReplyDto> getreply(String commentId);
+    List<ReplyDto> getreply1(String commentId);
 //    CommentsDto getRreply(String commentId);
     CommentsDto getreply(String commentId);
     CommentsDto getRreply(String commentId);

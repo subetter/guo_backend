@@ -96,7 +96,7 @@ public class CommentsServiceImpl extends ServiceImpl<CommentsMapper, Comments>
     @Resource
     UserMapper userMapper;
     @Override
-    public List<ReplyDto> getreply(String commentId) {
+    public List<ReplyDto> getreply1(String commentId) {
         try{
             QueryWrapper<Comments> queryWrapper = new QueryWrapper<>();
             queryWrapper.eq("root_id",commentId).eq("status",1);
@@ -126,6 +126,16 @@ public class CommentsServiceImpl extends ServiceImpl<CommentsMapper, Comments>
         }catch(Exception e){
             e.printStackTrace();
         }
+        return null;
+    }
+
+    @Override
+    public CommentsDto getreply(String commentId) {
+        return null;
+    }
+
+    @Override
+    public CommentsDto getRreply(String commentId) {
         return null;
     }
 
