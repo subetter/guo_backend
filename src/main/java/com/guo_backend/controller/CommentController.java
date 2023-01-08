@@ -3,14 +3,13 @@ package com.guo_backend.controller;
 import com.guo_backend.common.BaseResponse;
 import com.guo_backend.common.ResultUtils;
 import com.guo_backend.domain.Comments;
-import com.guo_backend.domain.User;
 import com.guo_backend.domain.dto.CommentsDto;
+import com.guo_backend.domain.dto.Reply;
 import com.guo_backend.domain.dto.ReplyDto;
 import com.guo_backend.service.CommentsService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
 
@@ -47,7 +46,7 @@ public class CommentController {
 
     @Operation(summary = "获取评论列表")
     @PostMapping("/student/getcomments")
-    public BaseResponse<CommentsDto> getCommentList(@RequestParam String chapterId, @RequestParam String userId){
+    public BaseResponse<Reply> getCommentList(@RequestParam String chapterId, @RequestParam String userId){
         return ResultUtils.success(commentsService.getCommentList(chapterId,userId));
     }
 

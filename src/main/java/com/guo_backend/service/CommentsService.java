@@ -4,6 +4,7 @@ import com.guo_backend.domain.Comments;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.guo_backend.domain.User;
 import com.guo_backend.domain.dto.CommentsDto;
+import com.guo_backend.domain.dto.Reply;
 import com.guo_backend.domain.dto.ReplyDto;
 
 import java.util.List;
@@ -19,7 +20,7 @@ public interface CommentsService extends IService<Comments> {
     Comments dispalyComment(Comments comments);
 
     Comments createComments(Comments comments);
-    CommentsDto getCommentList(String chapterId, String userId);
+    Reply getCommentList(String chapterId, String userId);
     List<ReplyDto> getreply1(String commentId);
 //    CommentsDto getRreply(String commentId);
     CommentsDto getreply(String commentId);

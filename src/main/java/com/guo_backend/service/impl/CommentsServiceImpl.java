@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.guo_backend.domain.User;
 import com.guo_backend.domain.dto.Comment;
 import com.guo_backend.domain.dto.CommentsDto;
+import com.guo_backend.domain.dto.Reply;
 import com.guo_backend.domain.dto.ReplyDto;
 import com.guo_backend.mapper.CommentsMapper;
 import com.guo_backend.mapper.UserMapper;
@@ -78,14 +79,33 @@ public class CommentsServiceImpl extends ServiceImpl<CommentsMapper, Comments>
     }
 
     @Override
-    public CommentsDto getCommentList(String chapterId, String userId) {
+    public Reply getCommentList(String chapterId, String userId) {
         try {
+            List<ReplyDto> reslist=new ArrayList<>();
             QueryWrapper<Comments> queryWrapper=new QueryWrapper<>();
             queryWrapper.eq("chapter_id",chapterId)
                     .eq("root_id","0");
             List<Comments> commentsList=commentsMapper.selectList(queryWrapper);
-            return CommentsDto.builder()
-                    .results(commentsList)
+            for(Comments cm:commentsList){
+                ReplyDto replyDto =new ReplyDto();
+                // 遍历每一条评论，根据userid查出avatar
+                QueryWrapper<User> queryWrapper1 = new QueryWrapper<>();
+                queryWrapper1.eq("user_id",userId);
+                User user = userMapper.selectOne(queryWrapper1);
+                replyDto.setAvatar(user.getAvatar());
+                replyDto.setCommentId(cm.getCommentId());
+                replyDto.setCommentContent(cm.getCommentContent());
+                replyDto.setCommentTime(cm.getCommentTime());
+                replyDto.setChapterId(cm.getChapterId());
+                replyDto.setPreId(cm.getPreId());
+                replyDto.setStatus(cm.getStatus());
+                replyDto.setUsername(cm.getUsername());
+                replyDto.setRootId(cm.getRootId());
+                replyDto.setUserId(cm.getUserId());
+                reslist.add(replyDto);
+            }
+            return Reply.builder()
+                    .result(reslist)
                     .build();
         }catch (Exception e){
             e.printStackTrace();
