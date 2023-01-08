@@ -24,6 +24,7 @@ import java.util.Objects;
 //@RequestMapping("cr")
 @Slf4j
 @Tag(name = "课程资源表")
+@CrossOrigin
 public class CourseResourceController {
     @Resource
     private CourseResourseService courseResourseService;

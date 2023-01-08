@@ -24,6 +24,7 @@ import javax.annotation.Resource;
 //@RequestMapping("user")
 @Slf4j
 @Tag(name = "用户")
+@CrossOrigin
 public class UserController {
     @Resource
     private UserService userService;

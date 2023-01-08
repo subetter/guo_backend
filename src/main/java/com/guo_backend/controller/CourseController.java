@@ -24,6 +24,7 @@ import javax.annotation.Resource;
 @RestController
 @Slf4j
 @Tag(name = "课程信息表")
+@CrossOrigin
 public class CourseController {
 
     @Resource

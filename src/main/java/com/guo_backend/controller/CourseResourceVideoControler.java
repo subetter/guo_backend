@@ -7,10 +7,7 @@ import com.guo_backend.service.CourseResourseService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 
@@ -19,6 +16,7 @@ import javax.annotation.Resource;
 @RequestMapping("student")
 @Slf4j
 @Tag(name="课程资源表")
+@CrossOrigin
 public class CourseResourceVideoControler {
     @Resource
     private CourseResourseService courseResourseService;

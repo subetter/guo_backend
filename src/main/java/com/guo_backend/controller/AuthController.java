@@ -24,6 +24,7 @@ import javax.servlet.http.HttpServletResponse;
 @RequestMapping(value = "/api/auth")
 @Component
 @Tag(name = "登录、注册")
+@CrossOrigin
 public class AuthController {
     @Resource
     private UserService userService;

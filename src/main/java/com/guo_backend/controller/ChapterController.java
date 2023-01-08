@@ -22,6 +22,7 @@ import java.util.prefs.BackingStoreException;
 @Component
 @Slf4j
 @Tag(name = "章节")
+@CrossOrigin
 public class ChapterController {
 
     @Resource
